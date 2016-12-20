@@ -1,0 +1,29 @@
+<a href="/songs">Dashboard</a><br>
+<a href="/logout">Logout</a><br>
+<h1><%= @user.first_name%> <%= @user.last_name%>'s Playlist</h1>
+<table style="text-align: center">
+  <tr>
+    <th style="padding: 10px;">
+      Artist
+    </th>
+    <th>
+      Title
+    </th>
+    <th>
+      Times added
+    </th>
+  </tr>
+    <% @playlist.to_set.each do |p|%>
+      <tr style="padding: 10px;">
+        <td>
+          <%= p.artist %>
+        </td>
+        <td>
+          <%= p.title %>
+        </td>
+        <td>
+          <%= Playlist.where(user: @user, song: p.song_id).count %>
+        </td>
+      </tr>
+    <% end %>
+</table>

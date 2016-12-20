@@ -1,0 +1,27 @@
+<a href="/songs">Dashboard</a><br>
+<a href="/logout">Logout</a>
+
+<br>
+<p>
+  Others who added <%= @song.artist %> - <%= @song.title %>
+</p>
+<table>
+  <tr>
+    <th>
+      Name
+    </th>
+    <th>
+      Times Added
+    </th>
+  </tr>
+  <% @person_added.to_set.each do |person| %>
+  <tr>
+    <td>
+      <a href="/users/<%= person.user_id %>"><%= person.first_name %> <%= person.last_name %></a>
+    </td>
+    <td>
+      <%= Playlist.where(user: person.user_id, song: @song).count %>
+    </td>
+  </tr>
+  <% end %>
+</table>
